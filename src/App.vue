@@ -11,7 +11,8 @@ export default {
             projects: null,
             base_api_url: 'http://localhost:8000',
             loading: true,
-            error: null
+            error: null,
+            max: 100
         }
     },
     methods: {
@@ -28,7 +29,34 @@ export default {
                     this.error = error.message;
                     this.loading = false
                 })
+        },
+
+        getImagePath(path) {
+            console.log(path);
+            if (path) {
+                return this.base_api_url + '/storage/' + path
+            }
+            return '/img/placeholder.jpg'
+        },
+
+        /**
+         * 
+         * @param {string} text 
+         */
+        trimDescription(text) {
+            // se il testo c'è, entra nel secondo if (riga 50) altrimenti se il testo non c'è va al return finale (riga 55)
+            if (text) {
+                // se è maggiore di max (100) rimane in questo if 
+                if (text.length > this.max) {
+                    //e fa il return del testo trimmato
+                    return text.slice(0, this.max)
+                }
+            }
+            //se il testo non c'è al primo if viene qui e stampa il return del testo vuoto
+            //se il testo è più corto di max (100) fa il return di tutto il testo
+            return text
         }
+
     },
     mounted() {
         this.getProjects(this.base_api_url + '/api/projects');
@@ -76,9 +104,11 @@ export default {
             <div v-if="!loading" class="row row-cols-1 row-cols-sm-3 g-4">
                 <div class="col" v-for="project in projects.data">
                     <div class="card">
-                        <img class="card-image" src="" alt="">
+                        <img class="card-image" :src="getImagePath(project.cover_image)" alt="">
                         <div class="card-body">
                             <h4>{{ project.title }}</h4>
+                            <p>{{ trimDescription(project.description) }}</p>
+                            <a href="">Read more</a>
                         </div>
                     </div>
                 </div>
