@@ -55,7 +55,16 @@ export default {
             //se il testo non c'è al primo if viene qui e stampa il return del testo vuoto
             //se il testo è più corto di max (100) fa il return di tutto il testo
             return text
+        },
+        prevPage(url){
+            console.log(url);
+            this.getProjects(url)
+        },
+        nextPage(url){
+            console.log(url);
+            this.getProjects(url)
         }
+
 
     },
     mounted() {
@@ -65,9 +74,8 @@ export default {
 </script>
 
 
-
-
 <template>
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="{{url('/')}}">Navbar</a>
@@ -97,21 +105,49 @@ export default {
         </div>
     </nav>
 
-
-    <section class="vue-home">
+    <!-- BANNER -->
+    <div class="banner shadow-sm">
         <div class="container">
-            <h1>Projects</h1>
-            <div v-if="!loading" class="row row-cols-1 row-cols-sm-3 g-4">
-                <div class="col" v-for="project in projects.data">
-                    <div class="card">
-                        <img class="card-image" :src="getImagePath(project.cover_image)" alt="">
-                        <div class="card-body">
-                            <h4>{{ project.title }}</h4>
-                            <p>{{ trimDescription(project.description) }}</p>
-                            <a href="">Read more</a>
+            <h1 class="py-4">Home Page</h1>
+        </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section class="vue-home py-4">
+        <div class="container">
+            <div v-if="!loading">
+                <div class="row row-cols-1 row-cols-sm-3 g-4">
+                    <div class="col" v-for="project in projects.data">
+                        <div class="card">
+                            <img class="card-image" :src="getImagePath(project.cover_image)" alt="">
+                            <div class="card-body">
+                                <h4>{{ project.title }}</h4>
+                                <p>{{ trimDescription(project.description) }}</p>
+                                <a href="">Read more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <nav aria-label="Page navigation" class="mt-3 d-flex justify-content-center">
+                    <ul class="pagination">
+                        <!-- pagina precedente -->
+                        <li class="page-item" v-if="projects.prev_page_url" @click="prevPage(projects.prev_page_url)">
+                            <a class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <!-- pagina corrente -->
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link">{{projects.current_page}}</a>
+                        </li>
+                        <!-- pagina successiva -->
+                        <li class="page-item" v-if="projects.next_page_url" @click="nextPage(projects.next_page_url)">
+                            <a class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <div v-else>LOADING...</div>
         </div>
