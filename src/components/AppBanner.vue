@@ -1,14 +1,15 @@
 
 <script>
 export default {
-    name: 'AppBanner'
+    name: 'AppBanner',
+    props: ['title']
 }
 </script>
 
 <template>
     <div class="banner shadow-sm">
         <div class="container">
-            <h1 class="py-4">Home Page</h1>
+            <h1 class="py-4">{{ title }}</h1>
         </div>
     </div>
 </template>
