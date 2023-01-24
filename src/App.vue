@@ -16,10 +16,9 @@ export default {
 <template>
     <!-- NAVBAR -->
     <AppNav></AppNav>
-    <!-- BANNER -->
-    <AppBanner></AppBanner>
-    <!-- MAIN -->
-    <AppMain></AppMain>
+
+    <router-view></router-view>
+    
 </template>
 
 <style lang="scss">

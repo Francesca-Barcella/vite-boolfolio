@@ -1,4 +1,3 @@
-
 <script>
 export default {
     name: 'AppNav'
@@ -16,18 +15,18 @@ export default {
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/') }}" aria-current="page">Home
+                        <router-link class="nav-link active" :to="{ name: 'home' }" aria-current="page">Home
                             <span class="visually-hidden">(current)</span>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <router-link class="nav-link" :to="{ name: 'about' }">About</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <router-link class="nav-link" :to="{ name: 'blog' }">Blog</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacts</a>
+                        <router-link class="nav-link" :to="{ name: 'contacts' }">Contacts</router-link>
                     </li>
                 </ul>
 
