@@ -1,8 +1,11 @@
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import AppBanner from '../components/AppBanner.vue'
 
 export default {
     name: 'SingleProjectView',
+    components: { AppBanner },
+
     data() {
         return {
             project: null,
@@ -21,7 +24,7 @@ export default {
         axios
             .get(url)
             .then(response => {
-                if(response.data.succes){
+                if (response.data.succes) {
                     this.project = response.data.results
                     this.loading = false
                 } else {
@@ -36,9 +39,18 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <h1>{{ $route.params.slug }}</h1>
+    <AppBanner :title="$route.params.slug"></AppBanner>
+    <div class="container" v-if="project">
+        <!-- 
+        <h2>{{project.title}}</h2>
+        <div class="description">{{project.description}}</div>
+        <img :src="base_api_url + '/storage/' + project.cover_image" alt="project.title">
+        -->
+        <h2>nome progetto</h2>
+        <div class="description">descrizione progetto</div>
     </div>
+    <div v-else>Sorry, no project here</div>
+
 </template>
 
 <style lang="scss" scoped>

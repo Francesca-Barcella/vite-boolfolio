@@ -82,7 +82,11 @@ export default {
                             <div class="card-body">
                                 <h4>{{ project.title }}</h4>
                                 <p>{{ trimDescription(project.description) }}</p>
-                                <a href="">Read more</a>
+                                <!-- 
+                                    APPENA RISOLTO IL PROBLEMA CON LA CHIAMATA VA AGGIORANTO <a></a> e #
+                                    <router-link :to="{name: 'single-project', params: {slug:project.slug} }">Read more</router-link>
+                                -->
+                                <a href="#">Read more</a>
                             </div>
                             <div class="card-footer text-muted">
                                 <div class="type">
