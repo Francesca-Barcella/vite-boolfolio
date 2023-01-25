@@ -86,7 +86,7 @@ export default {
                                     APPENA RISOLTO IL PROBLEMA CON LA CHIAMATA VA AGGIORANTO <a></a> e #
                                     <router-link :to="{name: 'single-project', params: {slug:project.slug} }">Read more</router-link>
                                 -->
-                                <a href="#">Read more</a>
+                                <router-link :to="{name: 'single-project', params: {slug:project.slug} }">Read more</router-link>
                             </div>
                             <div class="card-footer text-muted">
                                 <div class="type">
