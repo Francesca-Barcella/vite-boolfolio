@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from './views/HomeView.vue';
 import AboutView from './views/AboutView.vue';
 import ProjectsView from './views/ProjectsView.vue';
-import SinglePostView from './views/SingleProjectView.vue';
+import SingleProjectView from './views/SingleProjectView.vue';
 import ContactsView from './views/ContactsView.vue';
 
 
@@ -27,7 +27,7 @@ const router = createRouter({
         {
             path: '/projects/:slug',
             name: 'single-project',
-            component: SinglePostView
+            component: SingleProjectView
         },
         {
             path: '/contacts',
